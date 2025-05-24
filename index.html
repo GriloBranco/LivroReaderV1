@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extrator de Destaques de Livro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Extrator de Destaques de Livro (MVP)</h1>
+
+        <div class="input-group">
+            <label for="apiKey">Sua Chave API Gemini:</label>
+            <input type="password" id="apiKey" placeholder="Cole sua API Key aqui">
+            <small>Sua chave API não será armazenada, usada apenas para esta sessão.</small>
+        </div>
+
+        <div class="input-group">
+            <label for="videoFile">Selecione o vídeo do livro:</label>
+            <input type="file" id="videoFile" accept="video/*">
+        </div>
+
+        <div class="input-group">
+            <label for="frameInterval">Intervalo entre frames (segundos):</label>
+            <input type="number" id="frameInterval" value="2" min="0.5" step="0.1">
+            <small>Ex: 2 significa analisar um frame a cada 2 segundos do vídeo.</small>
+        </div>
+
+        <div class="input-group">
+            <label for="prompt">Prompt para IA (ajuste se necessário):</label>
+            <textarea id="prompt" rows="4">Extraia APENAS o texto que está destacado com marca-texto LARANJA nesta imagem da página de um livro. Retorne cada trecho destacado em uma nova linha. Se um destaque continuar na linha seguinte, junte o texto. Ignore qualquer outro texto não destacado.</textarea>
+        </div>
+
+        <button id="processButton">Processar Vídeo</button>
+
+        <div id="status">Pronto para processar.</div>
+
+        <div id="resultsArea">
+            <h2>Textos Extraídos:</h2>
+            <pre id="extractedText"></pre>
+            <button id="downloadPdfButton" style="display:none;">Baixar Destaques em PDF</button>
+        </div>
+
+        <!-- Elementos ocultos para processamento -->
+        <video id="videoPlayer" style="display: none;"></video>
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <!-- Biblioteca jsPDF para gerar PDF (carregada via CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
